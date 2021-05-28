@@ -171,28 +171,29 @@ const Player: NextPage<Props> = ({ accessToken }) => {
       });
   };
 
-  const track = async (accessToken: string, idOfTrack: string) => {
-    return await fetch(`https://api.spotify.com/v1/tracks/${idOfTrack}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        // const spotifyArtistsIdsExtracted: string[] = result.artists
-        //   ? result.artists.map((artist: SpotifyArtist) => artist.uri.split(":")[2])
-        //   : [""];
-        setCurrentTrackName(result.name);
-        // setCurrentTrackDuration_Ms(result.duration_ms);
-        // setCurrentTrackArtistsIds(spotifyArtistsIdsExtracted);
-        setCurrentAlbumId(result.album ? result.album.uri.split(":")[2] : "123");
-      });
-  };
+  // const track = async (accessToken: string, idOfTrack: string) => {
+  //   return await fetch(`https://api.spotify.com/v1/tracks/${idOfTrack}`, {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${accessToken}`,
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       // const spotifyArtistsIdsExtracted: string[] = result.artists
+  //       //   ? result.artists.map((artist: SpotifyArtist) => artist.uri.split(":")[2])
+  //       //   : [""];
+  //       setCurrentTrackName(result.name);
+  //       // setCurrentTrackDuration_Ms(result.duration_ms);
+  //       // setCurrentTrackArtistsIds(spotifyArtistsIdsExtracted);
+  //       setCurrentAlbumId(result.album ? result.album.uri.split(":")[2] : "123");
+  //     });
+  // };
 
   const [maxDuration, setMaxDuration] = React.useState<number>(0);
   const [songPosition, setSongPosition] = React.useState<number>(0);
+  const [albumDisplay, setAlbumDisplay] = React.useState<any>();
 
   React.useEffect(() => {
     const playerStateChanged = (state: SpotifyState) => {
@@ -202,7 +203,8 @@ const Player: NextPage<Props> = ({ accessToken }) => {
       const spotifyNextTrack: SpotifyTrack[] = state.track_window.next_tracks;
       const spotifyPreviousTrack: SpotifyTrack[] = state.track_window.previous_tracks;
 
-      //setCurrentTrack(spotifyTrack.name);
+      setCurrentTrackName(spotifyTrack.name);
+      setAlbumDisplay(spotifyTrack.album);
 
       setCurrentAlbumId(spotifyTrack.album.uri.split(":")[2]);
       setNextTrack(
@@ -242,6 +244,9 @@ const Player: NextPage<Props> = ({ accessToken }) => {
     oneAlbumSelected,
     arrayOfAlbumsIds,
     arrayOfAlbumsImages,
+
+    albumDisplay,
+
   ]);
 
   if (error) return <div>failed to load</div>;
@@ -291,7 +296,7 @@ const Player: NextPage<Props> = ({ accessToken }) => {
           setFnCurrentAlbumId={setFnCurrentAlbumId}
         />
       )}
-      <button onClick={() => track(accessToken, currentTrackId)}>Button Track</button>
+
       <button onClick={() => album(accessToken, currentAlbumId)}>Button Album</button>
     </Layout>
   );
