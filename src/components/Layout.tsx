@@ -21,6 +21,7 @@ type Props = {
   setFnArrayOfAlbumsImages?: any;
   setFnArrayOfAlbumsIds?: any;
   setFnOneAlbumSelected?: any;
+  random: boolean;
 };
 
 export const Layout: React.FC<Props> = ({
@@ -39,6 +40,7 @@ export const Layout: React.FC<Props> = ({
   setFnArrayOfAlbumsImages,
   setFnArrayOfAlbumsIds,
   setFnOneAlbumSelected,
+  random,
 }) => {
   return (
     <>
@@ -89,6 +91,7 @@ export const Layout: React.FC<Props> = ({
       </div>
 
       <Footer
+        random={random}
         songPosition={songPosition}
         currentTrackId={currentTrackId}
         currentTrackName={currentTrackName}

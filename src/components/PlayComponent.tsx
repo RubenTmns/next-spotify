@@ -1,5 +1,5 @@
 import React from "react";
-import { pause, play, nextTrackButton, previousTrackButton, songSlider } from "../pages/player";
+import { pause, play, nextTrackButton, previousTrackButton, songSlider, randomButton } from "../pages/player";
 
 const PlayComponent: React.FC<{
   paused?: boolean;
@@ -8,8 +8,9 @@ const PlayComponent: React.FC<{
   trackId?: string;
   songPosition?: number;
   maxDuration?: number;
+  random: boolean;
 }> = (props) => {
-  const [songPosition, setSongPosition] = React.useState<number|undefined>(props.songPosition);
+  const [songPosition, setSongPosition] = React.useState<number | undefined>(props.songPosition);
   return (
     <>
       <div className="player">
@@ -19,7 +20,7 @@ const PlayComponent: React.FC<{
             <i
               className="ButtonRandom fa fa-random"
               aria-hidden="true"
-              onClick={() => nextTrackButton(props.accessToken, props.deviceId)}
+              onClick={() => randomButton(props.accessToken, props.random, props.deviceId)}
             ></i>
           </div>
           <div className="col-md-1 col-2">
