@@ -38,7 +38,7 @@ export const Layout: React.FC<Props> = ({
   currentAlbumSmallImage,
   setFnArrayOfAlbumsImages,
   setFnArrayOfAlbumsIds,
-  setFnOneAlbumSelected
+  setFnOneAlbumSelected,
 }) => {
   return (
     <>
@@ -73,7 +73,14 @@ export const Layout: React.FC<Props> = ({
             <SideBarMobile />
           </div>
           <div className="col-10">
-            <NavBar accessToken={accessToken} isLoggedIn={isLoggedIn} spotifyLoginUrl={spotifyLoginUrl} setFnArrayOfAlbumsImages={setFnArrayOfAlbumsImages} setFnArrayOfAlbumsIds={setFnArrayOfAlbumsIds} setFnOneAlbumSelected={setFnOneAlbumSelected}/>
+            <NavBar
+              accessToken={accessToken}
+              isLoggedIn={isLoggedIn}
+              spotifyLoginUrl={spotifyLoginUrl}
+              setFnArrayOfAlbumsImages={setFnArrayOfAlbumsImages}
+              setFnArrayOfAlbumsIds={setFnArrayOfAlbumsIds}
+              setFnOneAlbumSelected={setFnOneAlbumSelected}
+            />
             <main className="mainBody d-none d-sm-block">{children}</main>
             <main className="mainBodyMobile d-sm-none">{children}</main>
           </div>

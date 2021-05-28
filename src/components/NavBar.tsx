@@ -6,10 +6,17 @@ type Props = {
   accessToken?: string;
   setFnArrayOfAlbumsImages?: any;
   setFnArrayOfAlbumsIds?: any;
-  setFnOneAlbumSelected?:any;
+  setFnOneAlbumSelected?: any;
 };
 
-const NavBar: React.FC<Props> = ({ isLoggedIn, spotifyLoginUrl, accessToken, setFnArrayOfAlbumsImages, setFnArrayOfAlbumsIds, setFnOneAlbumSelected }) => {
+const NavBar: React.FC<Props> = ({
+  isLoggedIn,
+  spotifyLoginUrl,
+  accessToken,
+  setFnArrayOfAlbumsImages,
+  setFnArrayOfAlbumsIds,
+  setFnOneAlbumSelected,
+}) => {
   const [currentSearchQuery, setCurrentSearchQuery] = React.useState();
   // const [currentSearchResultIds, setCurrentSearchResultIds] = React.useState();
 
@@ -17,8 +24,7 @@ const NavBar: React.FC<Props> = ({ isLoggedIn, spotifyLoginUrl, accessToken, set
     const access_token = accessToken;
     const searchQuery = query;
     setCurrentSearchQuery(searchQuery);
-    
-    console.log("Search Query: " + searchQuery.toString());
+
     const fetchURL = encodeURI(`q=${searchQuery}`);
     fetch(`https://api.spotify.com/v1/search?${fetchURL}&type=album&limit=6`, {
       method: "GET",
@@ -35,7 +41,6 @@ const NavBar: React.FC<Props> = ({ isLoggedIn, spotifyLoginUrl, accessToken, set
       })
       .then((response) => response.json())
       .then(({ albums }) => {
-        console.log("++++++++++++++++++++++++", albums);
         setFnOneAlbumSelected(false);
         const resultsIds: any = [];
         const resultsImg: any = [];
