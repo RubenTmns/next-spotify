@@ -3,16 +3,16 @@ import PlayComponent from "./PlayComponent";
 import { volumeSlider } from "../pages/player";
 
 const Footer: React.FC<{
-  paused: boolean;
-  accessToken: string;
-  deviceId: string;
-  currentTrackId: string;
-  currentTrackName: string;
-  currentAlbumSmallImage: string;
-  trackId: string;
-  volumePercent: number;
-  songPosition: number;
-  maxDuration: number;
+  paused?: boolean;
+  accessToken?: string;
+  deviceId?: string;
+  currentTrackId?: string;
+  currentTrackName?: string;
+  currentAlbumSmallImage?: string;
+  trackId?: string;
+  volumePercent?: number;
+  songPosition?: number;
+  maxDuration?: number;
 }> = (props) => {
   const [volume, setVolume] = React.useState<number>(0);
   return (

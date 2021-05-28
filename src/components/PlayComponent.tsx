@@ -2,14 +2,14 @@ import React from "react";
 import { pause, play, nextTrackButton, previousTrackButton, songSlider } from "../pages/player";
 
 const PlayComponent: React.FC<{
-  paused: boolean;
-  accessToken: string;
-  deviceId: string;
-  trackId: string;
-  songPosition: number;
-  maxDuration: number;
+  paused?: boolean;
+  accessToken?: string;
+  deviceId?: string;
+  trackId?: string;
+  songPosition?: number;
+  maxDuration?: number;
 }> = (props) => {
-  const [songPosition, setSongPosition] = React.useState<number>(props.songPosition);
+  const [songPosition, setSongPosition] = React.useState<number|undefined>(props.songPosition);
   return (
     <>
       <div className="player">

@@ -2,21 +2,25 @@ import React from "react";
 import Head from "next/head";
 import NavBar from "./NavBar";
 import SideBar from "./sidenavbar";
+import SideBarMobile from "./SideBarMobile";
 import Footer from "./Footer";
 
 type Props = {
-  isLoggedIn: boolean;
+  children?: React.ReactNode;
+  isLoggedIn?: boolean;
   spotifyLoginUrl?: string;
-  paused: boolean;
-  accessToken: string;
-  deviceId: string;
-  currentTrackId: string;
-  currentTrackName: string;
-  trackId: string;
-  currentTrack: string;
-  songPosition: number;
-  maxDuration: number;
-  currentAlbumSmallImage: string;
+  paused?: boolean;
+  accessToken?: string;
+  deviceId?: string;
+  currentTrackId?: string;
+  currentTrackName?: string;
+  trackId?: string;
+  songPosition?: number;
+  maxDuration?: number;
+  currentAlbumSmallImage?: string;
+  setFnArrayOfAlbumsImages?: any;
+  setFnArrayOfAlbumsIds?: any;
+  setFnOneAlbumSelected?: any;
 };
 
 export const Layout: React.FC<Props> = ({
@@ -32,6 +36,9 @@ export const Layout: React.FC<Props> = ({
   songPosition,
   maxDuration,
   currentAlbumSmallImage,
+  setFnArrayOfAlbumsImages,
+  setFnArrayOfAlbumsIds,
+  setFnOneAlbumSelected
 }) => {
   return (
     <>
@@ -59,12 +66,16 @@ export const Layout: React.FC<Props> = ({
       </Head>
       <div className="container-fluid">
         <div className="row">
-          <div className="col-2">
+          <div className="col-2 d-none d-sm-block">
             <SideBar />
           </div>
+          <div className="col-2 d-sm-none">
+            <SideBarMobile />
+          </div>
           <div className="col-10">
-            <NavBar accessToken={accessToken} isLoggedIn={isLoggedIn} spotifyLoginUrl={spotifyLoginUrl} />
-            <main className="mainBody">{children}</main>
+            <NavBar accessToken={accessToken} isLoggedIn={isLoggedIn} spotifyLoginUrl={spotifyLoginUrl} setFnArrayOfAlbumsImages={setFnArrayOfAlbumsImages} setFnArrayOfAlbumsIds={setFnArrayOfAlbumsIds} setFnOneAlbumSelected={setFnOneAlbumSelected}/>
+            <main className="mainBody d-none d-sm-block">{children}</main>
+            <main className="mainBodyMobile d-sm-none">{children}</main>
           </div>
         </div>
       </div>

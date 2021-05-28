@@ -1,7 +1,7 @@
 import React from "react";
 const SideBar: React.FC = () => {
   return (
-    <div className="SideBar" style={{ width: 200, height: 600 }}>
+    <div className="SideBar" style={{ width: 200}}>
       <a href="/" className="divimageSpotify">
         <img
           className="imageSpotify"

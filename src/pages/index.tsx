@@ -8,16 +8,14 @@ type IndexProps = {
   paused: boolean;
   accessToken: string;
   deviceId: string;
-  currentTrack: string;
 };
 
-const Index: React.FC<IndexProps> = ({ spotifyLoginUrl, paused, accessToken, deviceId, currentTrack }) => {
+const Index: React.FC<IndexProps> = ({ spotifyLoginUrl, paused, accessToken, deviceId }) => {
   const { data } = useSWR("/api/get-user-info");
   const user = data;
 
   return (
     <Layout
-      currentTrack={currentTrack}
       accessToken={accessToken}
       deviceId={deviceId}
       paused={paused}
