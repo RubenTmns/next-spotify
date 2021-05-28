@@ -3,7 +3,7 @@ import useSpotifyPlayer from "../hooks/useSpotifyPlayer";
 import Cookies from "cookies";
 import useSWR from "swr";
 import Layout from "../components/Layout";
-import React from "react";
+import React, { useState } from "react";
 import { SpotifyState, SpotifyTrack, SpotifyUser } from "../types/spotify";
 import Album from "../components/Album";
 import Albums from "../components/Albums";
@@ -78,8 +78,20 @@ export const songSlider = (
   });
 };
 
+export const randomButton = (accessToken: string | undefined, shuffle: boolean, deviceId: string | undefined) => {
+  shuffle = !shuffle;
+  return fetch(`https://api.spotify.com/v1/me/player/shuffle?state=${shuffle}&device_id=${deviceId}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+};
+
 const Player: NextPage<Props> = ({ accessToken }) => {
   const { data, error } = useSWR("/api/get-user-info");
+
+  const [random, setRandom] = useState<boolean>(false);
 
   const [paused, setPaused] = React.useState(true);
 
@@ -223,6 +235,7 @@ const Player: NextPage<Props> = ({ accessToken }) => {
       setSongPosition(state.position);
       setMaxDuration(state.track_window.current_track.duration_ms);
       album(accessToken, currentAlbumId);
+      setRandom(state.shuffle);
     };
 
     if (player) {
@@ -246,7 +259,6 @@ const Player: NextPage<Props> = ({ accessToken }) => {
     arrayOfAlbumsImages,
 
     albumDisplay,
-
   ]);
 
   if (error) return <div>failed to load</div>;
@@ -259,6 +271,7 @@ const Player: NextPage<Props> = ({ accessToken }) => {
 
   return (
     <Layout
+      random={random}
       songPosition={songPosition}
       currentTrackId={currentTrackId}
       currentTrackName={currentTrackName}

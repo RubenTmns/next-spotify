@@ -8,14 +8,16 @@ type IndexProps = {
   paused: boolean;
   accessToken: string;
   deviceId: string;
+  random: boolean;
 };
 
-const Index: React.FC<IndexProps> = ({ spotifyLoginUrl, paused, accessToken, deviceId }) => {
+const Index: React.FC<IndexProps> = ({ spotifyLoginUrl, paused, accessToken, deviceId, random }) => {
   const { data } = useSWR("/api/get-user-info");
   const user = data;
 
   return (
     <Layout
+      random={random}
       accessToken={accessToken}
       deviceId={deviceId}
       paused={paused}
