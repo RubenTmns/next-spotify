@@ -83,8 +83,8 @@ const NavBar: React.FC<Props> = ({
     <>
       <nav className="navbar navbar-expand-lg navbar-light ">
         <div className="container-fluid">
-          <div className="navbar" id="navbarTogglerDemo02">
-            <form className="">
+          <form className="">
+            <div className="navbar" id="navbarTogglerDemo02">
               <input
                 className="form-control"
                 type="search"
@@ -92,8 +92,8 @@ const NavBar: React.FC<Props> = ({
                 aria-label="Search"
                 onChange={(value) => getSearchResults(value.target.value)}
               />
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </nav>
       <div className="Loginright d-none d-sm-block">
