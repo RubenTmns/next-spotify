@@ -83,31 +83,31 @@ const NavBar: React.FC<Props> = ({
       <nav className="navbar navbar-expand-lg navbar-light ">
         <div className="container-fluid">
           <div className="navbar" id="navbarTogglerDemo02">
-            <form className="d-flex">
+            <form className="">
               <input
-                className="form-control me-2"
+                className="form-control"
                 type="search"
                 placeholder="Search Album"
                 aria-label="Search"
                 onChange={(value) => getSearchResults(value.target.value)}
               />
             </form>
-            <div className="d-none d-sm-block">
-              <span>
-                {isLoggedIn ? (
-                  <a className="login" href="/api/logout">
-                    <i className="logoLoginGreen fa fa-user" aria-hidden="true"></i>
-                  </a>
-                ) : (
-                  <a className="login" href={spotifyLoginUrl}>
-                    <i className="logoLogin fa fa-user" aria-hidden="true"></i>
-                  </a>
-                )}
-              </span>
-            </div>
           </div>
         </div>
       </nav>
+      <div className="Loginright d-none d-sm-block">
+        <span>
+          {isLoggedIn ? (
+            <a className="login" href="/api/logout">
+              <i className="logoLoginGreen fa fa-user" aria-hidden="true"></i>
+            </a>
+          ) : (
+            <a className="login" href={spotifyLoginUrl}>
+              <i className="logoLogin fa fa-user" aria-hidden="true"></i>
+            </a>
+          )}
+        </span>
+      </div>
     </>
   );
 };
