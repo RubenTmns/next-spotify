@@ -42,7 +42,7 @@ const SideBarMobile: React.FC<Props> = (props) => {
           <span>
             {props.isLoggedIn ? (
               <a className="login" href="/api/logout">
-                <i className="logoMobileUser fa fa-user" aria-hidden="true"></i>
+                <i className="logoMobileUserGreen fa fa-user" aria-hidden="true"></i>
               </a>
             ) : (
               <a className="login" href={props.spotifyLoginUrl}>
