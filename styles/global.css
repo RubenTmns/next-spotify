@@ -93,11 +93,13 @@ body {
 
 .form-control {
   border-radius: 3rem;
-  width: 23rem;
+  width: 13rem;
+  /* padding-top: 4rem; */
+  /* padding-left: 5rem; */
 }
 
 .navbar {
-  margin-top: 0.2rem;
+  margin-top: 1.5rem;
   position: fixed;
 }
 
@@ -269,6 +271,14 @@ i.logoMobileUserGreen{
   margin-top: 1rem;
   margin-left: -4px;
   padding-right: 0px;
+}
+i.logoLoginGreen{
+  color: #1ab954;
+  font-size: 30px;
+}
+i.logoLogin{
+  color: white;
+  font-size: 30px;
 }
 .imageAlbumGrid {
   margin-top: 1rem;
