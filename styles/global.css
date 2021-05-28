@@ -263,6 +263,13 @@ i.logoMobileUser{
   margin-left: -4px;
   padding-right: 0px;
 }
+i.logoMobileUserGreen{
+  color: #1ab954;
+  font-size: 30px;
+  margin-top: 1rem;
+  margin-left: -4px;
+  padding-right: 0px;
+}
 .imageAlbumGrid {
   margin-top: 1rem;
   margin-bottom: 1rem;
