@@ -83,7 +83,7 @@ const NavBar: React.FC<Props> = ({
     <>
       <nav className="navbar navbar-expand-lg navbar-light ">
         <div className="container-fluid">
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <div className="navbar" id="navbarTogglerDemo02">
             <form className="d-flex">
               <input
                 className="form-control me-2"
@@ -93,21 +93,19 @@ const NavBar: React.FC<Props> = ({
                 onChange={(value) => getSearchResults(value.target.value)}
               />
             </form>
-            <span>
-              {isLoggedIn ? (
-                <i className="logoLogin fa fa-user-circle-o" aria-hidden="true">
+            <div className="d-none d-sm-block">
+              <span>
+                {isLoggedIn ? (
                   <a className="login" href="/api/logout">
-                    logout
+                    <i className="logoLoginGreen fa fa-user" aria-hidden="true"></i>
                   </a>
-                </i>
-              ) : (
-                <i className="logoLogin fa fa-user-circle-o" aria-hidden="true">
+                ) : (
                   <a className="login" href={spotifyLoginUrl}>
-                    login
+                    <i className="logoLogin fa fa-user" aria-hidden="true"></i>
                   </a>
-                </i>
-              )}
-            </span>
+                )}
+              </span>
+            </div>
           </div>
         </div>
       </nav>
