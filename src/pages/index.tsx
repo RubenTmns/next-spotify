@@ -22,7 +22,13 @@ const Index: React.FC<IndexProps> = ({ spotifyLoginUrl, paused, accessToken, dev
       isLoggedIn={user !== undefined}
       spotifyLoginUrl={spotifyLoginUrl}
     >
-      <h1>Home page</h1>
+      <br />
+      <br />
+      <br />
+
+      <h1>Welcome in your Better Spotify application </h1>
+      <br />
+      <p>You can login on top right, ENJOY !</p>
       <p>{user && user.display_name}</p>
     </Layout>
   );
