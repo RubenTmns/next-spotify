@@ -25,6 +25,7 @@ const NavBar: React.FC<Props> = ({
     const searchQuery = query;
     setCurrentSearchQuery(searchQuery);
 
+
     const fetchURL = encodeURI(`q=${searchQuery}`);
     fetch(`https://api.spotify.com/v1/search?${fetchURL}&type=album&limit=6`, {
       method: "GET",
@@ -86,7 +87,7 @@ const NavBar: React.FC<Props> = ({
               <input
                 className="form-control me-2"
                 type="search"
-                placeholder="Search track"
+                placeholder="Search Album"
                 aria-label="Search"
                 onChange={(value) => getSearchResults(value.target.value)}
               />

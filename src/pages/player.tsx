@@ -244,7 +244,9 @@ const Player: NextPage<Props> = ({ accessToken }) => {
     oneAlbumSelected,
     arrayOfAlbumsIds,
     arrayOfAlbumsImages,
+
     albumDisplay,
+
   ]);
 
   if (error) return <div>failed to load</div>;
