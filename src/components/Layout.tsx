@@ -38,7 +38,7 @@ export const Layout: React.FC<Props> = ({
   currentAlbumSmallImage,
   setFnArrayOfAlbumsImages,
   setFnArrayOfAlbumsIds,
-  setFnOneAlbumSelected
+  setFnOneAlbumSelected,
 }) => {
   return (
     <>
@@ -64,16 +64,24 @@ export const Layout: React.FC<Props> = ({
         <title>Better Spotify</title>
         <link rel="icon" type="image/png" href="/images/faviconSpotify.png" />
       </Head>
+
       <div className="container-fluid">
         <div className="row">
           <div className="col-2 d-none d-sm-block">
             <SideBar />
           </div>
           <div className="col-2 d-sm-none">
-            <SideBarMobile />
+            <SideBarMobile isLoggedIn={isLoggedIn} spotifyLoginUrl={spotifyLoginUrl} />
           </div>
           <div className="col-10">
-            <NavBar accessToken={accessToken} isLoggedIn={isLoggedIn} spotifyLoginUrl={spotifyLoginUrl} setFnArrayOfAlbumsImages={setFnArrayOfAlbumsImages} setFnArrayOfAlbumsIds={setFnArrayOfAlbumsIds} setFnOneAlbumSelected={setFnOneAlbumSelected}/>
+            <NavBar
+              accessToken={accessToken}
+              isLoggedIn={isLoggedIn}
+              spotifyLoginUrl={spotifyLoginUrl}
+              setFnArrayOfAlbumsImages={setFnArrayOfAlbumsImages}
+              setFnArrayOfAlbumsIds={setFnArrayOfAlbumsIds}
+              setFnOneAlbumSelected={setFnOneAlbumSelected}
+            />
             <main className="mainBody d-none d-sm-block">{children}</main>
             <main className="mainBodyMobile d-sm-none">{children}</main>
           </div>

@@ -6,14 +6,14 @@ import Layout from "../components/Layout";
 import React from "react";
 import { SpotifyState, SpotifyTrack, SpotifyUser } from "../types/spotify";
 import Album from "../components/Album";
-import Albums from "../components/Albums"
+import Albums from "../components/Albums";
 
 interface Props {
   user: SpotifyUser;
   accessToken: string;
 }
 
-export const play = (accessToken: string|undefined, deviceId: string|undefined, trackId: string|undefined) => {
+export const play = (accessToken: string | undefined, deviceId: string | undefined, trackId: string | undefined) => {
   return fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
     method: "PUT",
     headers: {
@@ -25,7 +25,7 @@ export const play = (accessToken: string|undefined, deviceId: string|undefined, 
   });
 };
 
-export const pause = (accessToken: string|undefined, deviceId: string|undefined) => {
+export const pause = (accessToken: string | undefined, deviceId: string | undefined) => {
   return fetch(`https://api.spotify.com/v1/me/player/pause?device_id=${deviceId}`, {
     method: "PUT",
     headers: {
@@ -34,7 +34,7 @@ export const pause = (accessToken: string|undefined, deviceId: string|undefined)
   });
 };
 
-export const nextTrackButton = (accessToken: string|undefined, deviceId: string|undefined) => {
+export const nextTrackButton = (accessToken: string | undefined, deviceId: string | undefined) => {
   return fetch(`https://api.spotify.com/v1/me/player/next?device_id=${deviceId}`, {
     method: "POST",
     headers: {
@@ -43,7 +43,7 @@ export const nextTrackButton = (accessToken: string|undefined, deviceId: string|
   });
 };
 
-export const previousTrackButton = (accessToken: string|undefined, deviceId: string|undefined) => {
+export const previousTrackButton = (accessToken: string | undefined, deviceId: string | undefined) => {
   return fetch(`https://api.spotify.com/v1/me/player/previous?device_id=${deviceId}`, {
     method: "POST",
     headers: {
@@ -52,7 +52,11 @@ export const previousTrackButton = (accessToken: string|undefined, deviceId: str
   });
 };
 
-export const volumeSlider = (accessToken: string|undefined, volumePercent: number|undefined, deviceId: string|undefined) => {
+export const volumeSlider = (
+  accessToken: string | undefined,
+  volumePercent: number | undefined,
+  deviceId: string | undefined,
+) => {
   return fetch(`https://api.spotify.com/v1/me/player/volume?volume_percent=${volumePercent}&device_id=${deviceId}`, {
     method: "PUT",
     headers: {
@@ -61,7 +65,11 @@ export const volumeSlider = (accessToken: string|undefined, volumePercent: numbe
   });
 };
 
-export const songSlider = (accessToken: string|undefined, positionMs: number|undefined, deviceId: string|undefined) => {
+export const songSlider = (
+  accessToken: string | undefined,
+  positionMs: number | undefined,
+  deviceId: string | undefined,
+) => {
   return fetch(`https://api.spotify.com/v1/me/player/seek?position_ms=${positionMs}&device_id=${deviceId}`, {
     method: "PUT",
     headers: {
@@ -95,7 +103,7 @@ const Player: NextPage<Props> = ({ accessToken }) => {
     "https://i.scdn.co/image/ab67616d0000b2738cb690f962092fd44bbe2bf4",
     "https://i.scdn.co/image/ab67616d0000b2735225e9931a558f6d2f541a7d",
     "https://i.scdn.co/image/ab67616d0000b2734cb163c1d111f77307c842b6",
-  ]
+  ];
 
   const defaultAlbumIdsArray = [
     "0lw68yx3MhKflWFqCsGkIs",
@@ -104,7 +112,7 @@ const Player: NextPage<Props> = ({ accessToken }) => {
     "0HcHPBu9aaF1MxOiZmUQTl",
     "1Dh27pjT3IEdiRG9Se5uQn",
     "5OZgDtx180ZZPMpm36J2zC",
-  ]
+  ];
 
   const [deviceId, player] = useSpotifyPlayer(accessToken);
   const [currentTrackId, setCurrentTrackId] = React.useState("4VqPOruhp5EdPBeR92t6lQ");
@@ -121,24 +129,21 @@ const Player: NextPage<Props> = ({ accessToken }) => {
   const [arrayOfAlbumsImages, setArrayOfAlbumsImages] = React.useState(defaultAlbumImagesArray);
   const [arrayOfAlbumsIds, setArrayOfAlbumsIds] = React.useState(defaultAlbumIdsArray);
 
-  
   const setFnArrayOfAlbumsImages = (imgArray: string[]) => {
-    setArrayOfAlbumsImages(imgArray)
-  }
+    setArrayOfAlbumsImages(imgArray);
+  };
 
   const setFnArrayOfAlbumsIds = (idsArray: string[]) => {
-    setArrayOfAlbumsIds(idsArray)
-  }
-  
-  
+    setArrayOfAlbumsIds(idsArray);
+  };
+
   const setFnOneAlbumSelected = (isSelected: boolean) => {
-    setOneAlbumSelected(isSelected)
-  }
-  
+    setOneAlbumSelected(isSelected);
+  };
 
   const setFnCurrentAlbumId = (id: string) => {
     setCurrentAlbumId(id);
-  }
+  };
 
   const setTrackIdByChild = (trackId: string) => {
     setCurrentTrackId(trackId);
@@ -215,7 +220,7 @@ const Player: NextPage<Props> = ({ accessToken }) => {
       setCurrentAlbumId(state.track_window.current_track.album.uri.split(":")[2]);
       setSongPosition(state.position);
       setMaxDuration(state.track_window.current_track.duration_ms);
-      album(accessToken,currentAlbumId);
+      album(accessToken, currentAlbumId);
     };
 
     if (player) {
@@ -226,7 +231,18 @@ const Player: NextPage<Props> = ({ accessToken }) => {
         player.removeListener("player_state_changed", playerStateChanged);
       }
     };
-  }, [nextTrack, previousTrack, player, currentAlbumId, currentTrackId, songPosition, maxDuration, oneAlbumSelected, arrayOfAlbumsIds, arrayOfAlbumsImages]);
+  }, [
+    nextTrack,
+    previousTrack,
+    player,
+    currentAlbumId,
+    currentTrackId,
+    songPosition,
+    maxDuration,
+    oneAlbumSelected,
+    arrayOfAlbumsIds,
+    arrayOfAlbumsImages,
+  ]);
 
   if (error) return <div>failed to load</div>;
 
@@ -254,18 +270,27 @@ const Player: NextPage<Props> = ({ accessToken }) => {
     >
       <h5>Welcome {user && user.display_name}</h5>
 
-{oneAlbumSelected ?
-      <Album
-        id={currentAlbumId}
-        image={currentAlbumImage}
-        name={currentAlbumName}
-        duration_ms={currentAlbumDuration_Ms}
-        tracks={currentAlbumTrackList}
-        fn={setTrackIdByChild}
-        deviceId={deviceId}
-        paused={paused}
-        accessToken={accessToken}
-      /> : <Albums arrayOfAlbumsImages={arrayOfAlbumsImages} arrayOfAlbumsIds={arrayOfAlbumsIds} oneAlbumSelected={oneAlbumSelected} setFnOneAlbumSelected={setFnOneAlbumSelected} setFnCurrentAlbumId={setFnCurrentAlbumId}/> }
+      {oneAlbumSelected ? (
+        <Album
+          id={currentAlbumId}
+          image={currentAlbumImage}
+          name={currentAlbumName}
+          duration_ms={currentAlbumDuration_Ms}
+          tracks={currentAlbumTrackList}
+          fn={setTrackIdByChild}
+          deviceId={deviceId}
+          paused={paused}
+          accessToken={accessToken}
+        />
+      ) : (
+        <Albums
+          arrayOfAlbumsImages={arrayOfAlbumsImages}
+          arrayOfAlbumsIds={arrayOfAlbumsIds}
+          oneAlbumSelected={oneAlbumSelected}
+          setFnOneAlbumSelected={setFnOneAlbumSelected}
+          setFnCurrentAlbumId={setFnCurrentAlbumId}
+        />
+      )}
       <button onClick={() => track(accessToken, currentTrackId)}>Button Track</button>
       <button onClick={() => album(accessToken, currentAlbumId)}>Button Album</button>
     </Layout>

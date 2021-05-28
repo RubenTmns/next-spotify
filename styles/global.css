@@ -256,7 +256,13 @@ i.logoMobileTop {
   padding-left: 0.01px;
   margin-left: -2px;
 }
-
+i.logoMobileUser{
+  color: white;
+  font-size: 30px;
+  margin-top: 1rem;
+  margin-left: -4px;
+  padding-right: 0px;
+}
 .imageAlbumGrid {
   margin-top: 1rem;
   margin-bottom: 1rem;
