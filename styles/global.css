@@ -284,3 +284,10 @@ i.logoLogin{
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.Loginright{
+width: 80%;
+text-align: right;
+margin-top: 1.5rem;
+position: fixed;
+}
+
